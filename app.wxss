@@ -1,2 +1,27 @@
 /**app.wxss**/
-@import "./style/iconfont.wxss"
+@import "./style/iconfont.wxss";
+
+/* 样式初始化 */
+page,
+view,
+text,
+swiper,
+swiper-item,
+image,
+navigato {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* 定义主题颜色 */
+page{
+  /* 主题颜色 */
+  --themeColor: #eb4450;
+  /* 
+    定义统一字体大小，假设设计稿是375px
+    那么，1px = 2rpx
+    14px = 28rpx
+  */
+  font-size: 28rpx;
+}
