@@ -6,7 +6,10 @@ import {
 Page({
   data: {
     // 轮播图数据数组
-    swiperList: []
+    swiperList: [],
+
+    // 导航条数据数组
+    catesList: []
   },
 
   // 页面开始加载时触发
@@ -23,12 +26,38 @@ Page({
     //     })
     //   }
     // })
+    // request({
+    //     url: "https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata"
+    //   })
+    //   .then(result => {
+    //     this.setData({
+    //       swiperList: result.data.message
+    //     })
+    //   })
+    this.getSwiperList();
+    this.getCatesList();
+  },
+
+  // 获取轮播图数据
+  getSwiperList() {
     request({
         url: "https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata"
       })
       .then(result => {
         this.setData({
           swiperList: result.data.message
+        })
+      })
+  },
+
+  // 获取分类导航数据
+  getCatesList() {
+    request({
+        url: "https://api-hmugo-web.itheima.net/api/public/v1/home/catitems"
+      })
+      .then(result => {
+        this.setData({
+          catesList: result.data.message
         })
       })
   }

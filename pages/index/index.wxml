@@ -27,4 +27,12 @@
     </swiper>
   </view>
   <!-- 轮播图结束 -->
+
+  <!-- 分类开始 -->
+  <view class="index_cate">
+    <navigator wx:for="{{catesList}}" wx:key="name">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </navigator>
+  </view>
+  <!-- 分类结束 -->
 </view>
