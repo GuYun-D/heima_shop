@@ -7,7 +7,9 @@ Page({
     // 左侧菜单数据
     leftMenuList: [],
     // 右侧商品数据
-    rightContent: []
+    rightContent: [],
+    // 被点击的左侧菜单
+    currentIndex: 0
   },
 
   // 接口返回的数据
