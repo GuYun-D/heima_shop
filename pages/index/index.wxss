@@ -16,7 +16,7 @@
   width: 100%;
 }
 .index_floor .floor_group .floor_title {
-  padding: 10px 0;
+  padding: 10rpx 0;
 }
 .index_floor .floor_group .floor_title image {
   width: 100%;
@@ -29,12 +29,12 @@
   width: 33.33%;
 }
 .index_floor .floor_group .floor_list navigator:nth-last-child(-n + 4) image {
-  height: 27.727vw;
-  border-left: 10px solid #fff;
+  height: 26.6vw;
+  border-left: 10rpx solid #fff;
 }
 .index_floor .floor_group .floor_list navigator:nth-child(2),
 .index_floor .floor_group .floor_list navigator:nth-child(3) {
-  border-bottom: 10px solid #fff;
+  border-bottom: 10rpx solid #fff;
 }
 .index_floor .floor_group .floor_list navigator image {
   width: 100%;
