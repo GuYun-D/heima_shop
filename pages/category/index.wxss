@@ -6,7 +6,7 @@ page {
 }
 .cates .cates_container {
   display: flex;
-  height: calc(100vh-90rpx);
+  height: calc(100vh - 90rpx);
 }
 .cates .cates_container .left_menu {
   flex: 2;
