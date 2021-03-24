@@ -11,7 +11,7 @@ Page({
     // 被点击的左侧菜单
     currentIndex: 0,
     // 右侧滚动距离顶部的距离
-    scrollTop: 0;
+    scrollTop: 0
   },
 
   // 接口返回的数据
