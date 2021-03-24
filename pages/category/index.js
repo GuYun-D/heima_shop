@@ -2,6 +2,8 @@ import {
   request
 } from "../../request/index.js"
 
+import regeneratorRuntime from "../../lib/runtime/runtime.js"
+
 Page({
   data: {
     // 左侧菜单数据
@@ -71,30 +73,56 @@ Page({
   },
 
   // 获取分类数据
-  getCates() {
-    request({
-      url: "/categories",
-    }).then(res => {
-      // console.log(res);
-      this.Cates = res.data.message;
+  async getCates() {
+    // request({
+    //   url: "/categories",
+    // }).then(res => {
+    //   // console.log(res);
+    //   this.Cates = res.data.message;
 
-      // 将接口数据存至本地
-      wx.setStorageSync('cates', {
-        time: Date.now(),
-        data: this.Cates
-      })
+    //   // 将接口数据存至本地
+    //   wx.setStorageSync('cates', {
+    //     time: Date.now(),
+    //     data: this.Cates
+    //   })
 
-      // 构造左侧大菜单数据
-      let leftMenuList = this.Cates.map(v => v.cat_name);
+    //   // 构造左侧大菜单数据
+    //   let leftMenuList = this.Cates.map(v => v.cat_name);
 
-      // 构造右侧商品数据
-      // 不同的索引，获取到的数据就不同，this.Cates[0].children就是切换右侧数据的关键
-      let rightContent = this.Cates[0].children;
+    //   // 构造右侧商品数据
+    //   // 不同的索引，获取到的数据就不同，this.Cates[0].children就是切换右侧数据的关键
+    //   let rightContent = this.Cates[0].children;
 
-      this.setData({
-        leftMenuList,
-        rightContent
-      })
+    //   this.setData({
+    //     leftMenuList,
+    //     rightContent
+    //   })
+    // })
+
+    // 使用1async
+    const res = await request({
+      url: "/categories"
+    });
+
+    this.Cates = res;
+    // this.Cates = res.data.message;
+
+    // 将接口数据存至本地
+    wx.setStorageSync('cates', {
+      time: Date.now(),
+      data: this.Cates
+    })
+
+    // 构造左侧大菜单数据
+    let leftMenuList = this.Cates.map(v => v.cat_name);
+
+    // 构造右侧商品数据
+    // 不同的索引，获取到的数据就不同，this.Cates[0].children就是切换右侧数据的关键
+    let rightContent = this.Cates[0].children;
+
+    this.setData({
+      leftMenuList,
+      rightContent
     })
   },
 

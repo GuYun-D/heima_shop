@@ -49,7 +49,7 @@ Page({
       })
       .then(result => {
         this.setData({
-          swiperList: result.data.message
+          swiperList: result
         })
       })
   },
@@ -61,7 +61,7 @@ Page({
       })
       .then(result => {
         this.setData({
-          catesList: result.data.message
+          catesList: result
         })
       })
   },
@@ -73,7 +73,7 @@ Page({
       })
       .then(result => {
         this.setData({
-          floorList: result.data.message
+          floorList: result
         })
       })
   }
