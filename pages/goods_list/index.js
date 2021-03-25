@@ -24,7 +24,7 @@ Page({
     }],
 
     // 获取到的商品列表数据
-    goods_list: []
+    goodsList: []
   },
 
   // 请求商品数据的参数
@@ -75,7 +75,7 @@ Page({
     // console.log(res);
 
     this.setData({
-      goods_list: res.goods
+      goodsList: res.goods
     })
   }
 })
