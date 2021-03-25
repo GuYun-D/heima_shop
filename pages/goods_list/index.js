@@ -1,4 +1,8 @@
-// pages/goods_list/index.js
+import {
+  request
+} from "../../request/index.js"
+
+import regeneratorRuntime from "../../lib/runtime/runtime.js"
 Page({
 
   /**
@@ -17,15 +21,31 @@ Page({
       id: 2,
       value: "价格",
       isActive: false
-    }]
+    }],
+
+    // 获取到的商品列表数据
+    goods_list: []
+  },
+
+  // 请求商品数据的参数
+  QueryParams: {
+    query: "",
+    cid: "",
+    // 请求第几页
+    pagenum: "",
+    // 页容量
+    pagesize: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取其他页面传递过来的参数
-    console.log(options);
+    // 获取其他页面传递过来的参数， 就是cid
+    // console.log(options);
+    this.QueryParams.cid = options.cid;
+    // console.log(this.QueryParams);
+    this.getGoodsList()
   },
 
   // 标题点击事件，从子组件传递过来
@@ -43,6 +63,19 @@ Page({
     // 赋值到data中
     this.setData({
       tabs
+    })
+  },
+
+  // 获取商品列表数据
+  async getGoodsList() {
+    const res = await request({
+      url: "/goods/search",
+      data: this.QueryParams
+    })
+    // console.log(res);
+
+    this.setData({
+      goods_list: res.goods
     })
   }
 })
