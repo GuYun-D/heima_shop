@@ -14,6 +14,13 @@
  *    1 当前的页码 ++
  *    2 重新发送请求
  *    3 数据请求回来  要对data中的数组 进行 拼接 而不是全部替换！！！
+ * 2 下拉刷新页面
+ *   1 触发下拉刷新事件 需要在页面的json文件中开启一个配置项
+ *     找到 触发下拉刷新的事件
+ *   2 重置 数据 数组 
+ *   3 重置页码 设置为1
+ *   4 重新发送请求
+ *   5 数据请求回来 需要手动的关闭 等待效果
  *    
  */
 
@@ -68,6 +75,14 @@ Page({
     this.QueryParams.cid = options.cid;
     // console.log(this.QueryParams);
     this.getGoodsList()
+
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    setTimeout(function(){
+      wx.hideLoading()
+    }, 5000)
   },
 
   // 标题点击事件，从子组件传递过来
@@ -108,6 +123,9 @@ Page({
       // 当下拉请求回来的数据只有下一页的数据，就需要进行拼接
       goodsList: [...this.data.goodsList, ...res.goods]
     })
+
+    // 关闭下拉刷新的窗口
+    wx.stopPullDownRefresh()
   },
 
   // 页面上滑、滚动条触底事件
@@ -128,6 +146,19 @@ Page({
       this.QueryParams.pagenum++;
       this.getGoodsList();
     }
+  },
+
+  // 下拉刷新事件
+  onPullDownRefresh(){
+    // console.log("刷新");、
+    // 重置数组
+    this.setData({
+      getGoodsList: []
+    })
+    // 重置页码
+    this.QueryParams.pagenum = 1,
+    // 重新获取数据
+    this.getGoodsList()
   }
 
 })
