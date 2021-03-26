@@ -1,3 +1,9 @@
+/**
+ * 点击图片预览图片
+ *      1.给轮播图绑定点击事件
+ *      2.调用小程序的api previewImage
+ */
+
 import {
   request
 } from "../../request/index.js";
@@ -8,6 +14,10 @@ Page({
   data: {
     goodsObj: {}
   },
+
+  // 商品对象
+  // 方便预览时获取图片信息
+  GoodsInfo: {},
 
   onLoad: function (options) {
     const {
@@ -28,6 +38,8 @@ Page({
       }
     })
 
+    this.GoodsInfo = goodsObj;
+
     // console.log(goodsObj);
     /**
      * 数据太过庞大，使用的数据又没多少，小程序建议传入需要的数据，不然会造成性能缓慢
@@ -43,6 +55,18 @@ Page({
         pics: goodsObj.pics
       }
     })
-  }
+  },
 
+  // 预览轮播图
+  handlePrevewImage(e) {
+    // console.log("预览");
+    // 1.先构造要预览的图片数组
+    const urls = this.GoodsInfo.pics.map(v => v.pics_mid);
+    // 2 接收传递过来的图片url
+    const current = e.currentTarget.dataset.url;
+    wx.previewImage({
+      current,
+      urls
+    });
+  }
 })
