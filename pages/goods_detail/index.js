@@ -29,9 +29,19 @@ Page({
     })
 
     // console.log(goodsObj);
-
+    /**
+     * 数据太过庞大，使用的数据又没多少，小程序建议传入需要的数据，不然会造成性能缓慢
+     */
     this.setData({
-      goodsObj
+      goodsObj: {
+        goods_name: goodsObj.goods_name,
+        goods_price: goodsObj.goods_price,
+        /**
+         * 图文详情中可能有webp格式的图片，iphone部分手机不识别
+         */
+        goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g, '.jpg'),
+        pics: goodsObj.pics
+      }
     })
   }
 
