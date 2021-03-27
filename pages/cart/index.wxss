@@ -1,1 +1,4 @@
-/* pages/cart/index.wxss */
+button {
+  width: 60%;
+  margin-top: 20rpx;
+}
