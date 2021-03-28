@@ -1,12 +1,17 @@
-// pages/cart/index.js
+/**
+ * 3 onShow 
+ *    0回到了商品详情页面 第一次添加商品的时候 手动添加了属性
+ *        1 num=1;
+ *        2 checked=true;
+ *    1 获取缓存中的购物车数组
+ *    2 把购物车数据 填充到data中
+ */
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     // 收货地址
-    address: []
+    address: [],
+    // 购物车数据
+    cart: []
   },
 
   /**
@@ -19,9 +24,12 @@ Page({
   onShow: function () {
     // 获取缓存中的收货地址
     const address = wx.getStorageSync('address')
+    // 获取缓存中的购物车数据
+    const cart = wx.getStorageSync('cart')
     // 给data赋值
     this.setData({
-      address
+      address,
+      cart
     })
   },
 
