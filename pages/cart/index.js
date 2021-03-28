@@ -22,6 +22,12 @@
  *      商品对象的选中状态 取反
  *      重新填充回data中和缓存中
  *      重新计算全选。总价格 总数量。。。
+ * 全选。反选
+ *      全选复选框绑定事件 change
+ *      获取 data中的全选变量 allChecked
+ *      直接取反 allChecked=!allChecked
+ *      遍历购物车数组 让里面 商品 选中状态跟随  allChecked 改变而改变
+ *      把购物车数组 和 allChecked 重新设置回data 把购物车重新设置回 缓存中
  */
 Page({
   data: {
@@ -154,6 +160,23 @@ Page({
       totalNum,
       totalPrice,
       allChecked
+    })
+  },
+
+  // 全选反选
+  handleItemAllCheck() {
+    // 获取data中的数据
+    let {
+      cart,
+      allChecked
+    } = this.data;
+    // 修改值
+    allChecked = !allChecked;
+    // 循环修改cart数组中的选中状态
+    cart.forEach(v => v.checked = allChecked);
+    // 设置回data
+    this.setData({
+      cart
     })
   }
 })
