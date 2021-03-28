@@ -206,9 +206,28 @@ Page({
     } = this.data;
     // 找到需要修改的商品id
     const index = cart.findIndex(v => v.goods_id === id)
-    // 修改数量
-    cart[index].num += operation*1
-    // 设置回data
-    this.setCart(cart)
+    // console.log("cart[index]" + cart[index].num);
+    // 判断是否执行删除
+    if (cart[index].num == 1 && operation == -1) {
+      // 弹出按提示
+      wx.showModal({
+        content: '您是否要删除',
+        title: '提示',
+        success: (res) => {
+          if (res.confirm) {
+            cart.splice(index, 1)
+            this.setCart(cart)
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+    } else {
+      // 修改数量
+      cart[index].num += operation * 1
+      // 设置回data
+      this.setCart(cart)
+    }
+
   }
 })
