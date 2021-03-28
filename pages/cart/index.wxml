@@ -50,7 +50,6 @@
     </block>
   </view>
 </view>
-
 <!-- 底部的工具栏 -->
 <view class="footer_tool">
   <!-- 全选 -->
@@ -69,7 +68,7 @@
     <view>包含运费</view>
   </view>
   <!-- 结算 -->
-  <view class="order_pay_wrap">
+  <view class="order_pay_wrap" bindtap="handlePay">
     结算({{totalNum}})
   </view>
 </view>

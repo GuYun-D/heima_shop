@@ -40,7 +40,14 @@
  *          2 取消  什么都不做 
  *      直接修改商品对象的数量 num
  *      把cart数组 重新设置回 缓存中 和data中 this.setCart
+ * 点击结算
+ *      判断有没有收货地址信息
+ *      判断用户有没有选购商品
+ *      经过以上的验证 跳转到 支付页面！
  */
+import { getSetting, chooseAddress, openSetting, showModal ,showToast} from "../../utils/asyncWx.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
+
 Page({
   data: {
     // 收货地址
@@ -229,5 +236,24 @@ Page({
       this.setCart(cart)
     }
 
+  },
+
+  // 结算
+  async handlePay(){
+    // 判断地址是否存在
+    const {address, totalNum} = this.data;
+    if(!address.userName){
+      await showToast({title: "你让我送到天涯海角吗"})
+      return
+    }
+    // 判断用户是否选中商品
+    if(totalNum === 0){
+      await showToast({title: "你钱烧的啊"})
+      return
+    }
+    // 跳转到支付页面
+    wx.navigateTo({
+      url: '/pages/pay/index'
+    })
   }
 })
