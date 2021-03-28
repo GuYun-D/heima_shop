@@ -59,33 +59,38 @@ Page({
      */
     // const allChecked = cart.every(v => v.checked);
     // const allChecked = cart.length ? cart.every(v => v.checked) : false
-    let allChecked = true;
-    // 总价&总数
-    let totalPrice = 0;
-    let totalNum = 0;
-    cart.forEach(v => {
-      if (v.checked) {
-        totalPrice += v.num * v.goods_price;
-        totalNum += v.num;
-      } else {
-        /**
-         * 全选优化
-         * 通过计算总价的前提就是所有商品选中，如果有一个商品未选中就走此路，将赋值为false
-         * 另外判断数组是否为空
-         */
-        allChecked = false
-      }
-    });
-    // 判断cart是否为空
-    allChecked = cart.length != 0 ? allChecked : false
-    // 给data赋值
+    // let allChecked = true;
+    // // 总价&总数
+    // let totalPrice = 0;
+    // let totalNum = 0;
+    // cart.forEach(v => {
+    //   if (v.checked) {
+    //     totalPrice += v.num * v.goods_price;
+    //     totalNum += v.num;
+    //   } else {
+    //     /**
+    //      * 全选优化
+    //      * 通过计算总价的前提就是所有商品选中，如果有一个商品未选中就走此路，将赋值为false
+    //      * 另外判断数组是否为空
+    //      */
+    //     allChecked = false
+    //   }
+    // });
+    // // 判断cart是否为空
+    // allChecked = cart.length != 0 ? allChecked : false
+    // // 给data赋值
+    // this.setData({
+    //   address,
+    //   cart,
+    //   allChecked,
+    //   totalPrice,
+    //   totalNum
+    // })
     this.setData({
-      address,
-      cart,
-      allChecked,
-      totalPrice,
-      totalNum
+      address
     })
+    this.setCart(cart)
+
   },
 
   // d点击收货地址触发
@@ -116,9 +121,12 @@ Page({
     console.log(index);
     // 选中状态取反
     cart[index].checked = !cart[index].checked;
+    this.setCart(cart)
+  },
+
+  // 设置购物车状态
+  setCart(cart) {
     // 将购物车数据重新设置回data中和缓存中
-
-
     wx.setStorageSync('cart', cart)
 
     let allChecked = true;
@@ -142,7 +150,10 @@ Page({
     allChecked = cart.length != 0 ? allChecked : false
 
     this.setData({
-      cart,totalNum,totalPrice,allChecked
+      cart,
+      totalNum,
+      totalPrice,
+      allChecked
     })
   }
 })
