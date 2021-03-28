@@ -8,6 +8,14 @@
  * 全选实现
  *    onShow 获取缓存中的购物车数组
  *    根据购物车中的商品数据 所有的商品都被选中 checked=true  全选就被选中
+ * 总价格和总数量
+ *    都需要商品被选中 我们才拿它来计算
+ *   获取购物车数组
+ *   遍历
+ *   判断商品是否被选中
+ *   总价格 += 商品的单价 * 商品的数量
+ *   总数量 +=商品的数量
+ *   把计算后的价格和数量 设置回data中即可
  */
 Page({
   data: {
@@ -16,7 +24,11 @@ Page({
     // 购物车数据
     cart: [],
     // 全选
-    allChecked: false
+    allChecked: false,
+    // 总价格
+    totalPrice: 0,
+    // 总数量
+    totalNum: 0
   },
 
   /**
@@ -40,12 +52,33 @@ Page({
      *    解决：const allChecked = cart.length ? cart.every(v => v.checked) : false
      */
     // const allChecked = cart.every(v => v.checked);
-    const allChecked = cart.length ? cart.every(v => v.checked) : false
+    // const allChecked = cart.length ? cart.every(v => v.checked) : false
+    let allChecked = true;
+    // 总价&总数
+    let totalPrice = 0;
+    let totalNum = 0;
+    cart.forEach(v => {
+      if (v.checked) {
+        totalPrice += v.num * v.goods_price;
+        totalNum += v.num;
+      } else {
+        /**
+         * 全选优化
+         * 通过计算总价的前提就是所有商品选中，如果有一个商品未选中就走此路，将赋值为false
+         * 另外判断数组是否为空
+         */
+        allChecked = false
+      }
+    });
+    // 判断cart是否为空
+    allChecked = cart.length != 0 ? allChecked : false
     // 给data赋值
     this.setData({
       address,
       cart,
-      allChecked
+      allChecked,
+      totalPrice,
+      totalNum
     })
   },
 
