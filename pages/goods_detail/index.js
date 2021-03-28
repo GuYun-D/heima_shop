@@ -87,6 +87,8 @@ Page({
     if (index === -1) {
       // 不存在，第一次添加
       this.GoodsInfo.num = 1;
+      // 添加选中状态
+      this.GoodsInfo.checked = true
       cart.push(this.GoodsInfo);
     } else {
       // 已经存在，执行num++

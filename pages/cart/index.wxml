@@ -21,13 +21,12 @@
       <!-- 复选框 -->
       <view class="cart_chk_wrap">
         <checkbox-group>
-          <checkbox></checkbox>
+          <checkbox checked="{{item.checked}}"></checkbox>
         </checkbox-group>
       </view>
       <!-- 商品图片 -->
       <navigator class="cart_img_wrap">
-        <image mode="widthFix"
-          src="{{item.goods_small_logo}}"></image>
+        <image mode="widthFix" src="{{item.goods_small_logo}}"></image>
       </navigator>
       <!-- 商品信息 -->
       <view class="cart_info_wrap">
