@@ -28,6 +28,18 @@
  *      直接取反 allChecked=!allChecked
  *      遍历购物车数组 让里面 商品 选中状态跟随  allChecked 改变而改变
  *      把购物车数组 和 allChecked 重新设置回data 把购物车重新设置回 缓存中
+ * 商品数量的加减
+ *      "+" "-" 按钮 绑定同一个点击事件 区分的关键 自定义属性 
+ *          1 “+” "+1"
+ *          2 "-" "-1"
+ *      传递被点击的商品id goods_id
+ *      获取data中的购物车数组 来获取需要被修改的商品对象
+ *      当 购物车的数量 =1 同时 用户 点击 "-"
+ *      弹窗提示(showModal) 询问用户 是否要删除
+ *          1 确定 直接执行删除
+ *          2 取消  什么都不做 
+ *      直接修改商品对象的数量 num
+ *      把cart数组 重新设置回 缓存中 和data中 this.setCart
  */
 Page({
   data: {
@@ -174,6 +186,28 @@ Page({
     allChecked = !allChecked;
     // 循环修改cart数组中的选中状态
     cart.forEach(v => v.checked = allChecked);
+    // 设置回data
+    this.setData({
+      cart
+    })
+  },
+
+  // 商品数量的加减
+  handleItemNumEdit(e) {
+    // 结构传递来的数据
+    let {
+      operation,
+      id
+    } = e.currentTarget.dataset;
+    // console.log(operation, id);
+    // 获取购物车的数组
+    let {
+      cart
+    } = this.data;
+    // 找到需要修改的商品id
+    const index = cart.findIndex(v => v.goods_id === id)
+    // 修改数量
+    cart[index].num += operation*1
     // 设置回data
     this.setData({
       cart
