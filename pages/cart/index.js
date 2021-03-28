@@ -209,8 +209,6 @@ Page({
     // 修改数量
     cart[index].num += operation*1
     // 设置回data
-    this.setData({
-      cart
-    })
+    this.setCart(cart)
   }
 })
