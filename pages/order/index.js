@@ -49,6 +49,17 @@ Page({
     const {
       index
     } = e.detail;
+
+    this.changeTitleIndex(index)
+
+    // 激活选中页面标题 当 type=1 index=0 
+    // 每次切换的时候重新发送请求
+    this.getOrders(index+1)
+
+  },
+
+  // 根据索引确定哪个表一被激活
+  changeTitleIndex(index) {
     // 修改原数组
     let {
       tabs
@@ -65,7 +76,7 @@ Page({
      * 判断是否存在token
      */
     const token = wx.getStorageSync('token');
-    if(!token){
+    if (!token) {
       wx.navigateTo({
         url: '/pages/auth/index'
       })
@@ -76,13 +87,22 @@ Page({
     // 数组中索引值最大的就是当前页面
     let currentPage = pages[pages.length - 1];
     // console.log(currentPage.options);
-    const {type} = currentPage.options;
+    const {
+      type
+    } = currentPage.options;
+    // 激活选中页面标题 当 type=1 index=0 
+    this.changeTitleIndex(type - 1)
     this.getOrders(type)
   },
 
   // 获取订单列表的方法
-  async getOrders(type){
-    const res = await request({url: "/my/orders/all", data: {type}})
+  async getOrders(type) {
+    const res = await request({
+      url: "/my/orders/all",
+      data: {
+        type
+      }
+    })
     // console.log(res);
     this.setData({
       orders: res
