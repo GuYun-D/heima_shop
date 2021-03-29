@@ -80,7 +80,7 @@ Page({
       title: '加载中',
     })
 
-    setTimeout(function(){
+    setTimeout(function () {
       wx.hideLoading()
     }, 5000)
   },
@@ -149,7 +149,7 @@ Page({
   },
 
   // 下拉刷新事件
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     // console.log("刷新");、
     // 重置数组
     this.setData({
@@ -157,8 +157,8 @@ Page({
     })
     // 重置页码
     this.QueryParams.pagenum = 1,
-    // 重新获取数据
-    this.getGoodsList()
+      // 重新获取数据
+      this.getGoodsList()
   }
 
 })
