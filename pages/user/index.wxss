@@ -1,1 +1,40 @@
-/* pages/user/index.wxss */
+.userInfo_wrap {
+  height: 55vh;
+  position: relative;
+  background-color: var(--themeColor);
+}
+.userInfo_wrap .user_image_wrap {
+  position: relative;
+}
+.userInfo_wrap .user_image_wrap .user_bg {
+  height: 55vh;
+  filter: blur(10rpx);
+}
+.userInfo_wrap .user_image_wrap .user_info {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 30%;
+  text-align: center;
+}
+.userInfo_wrap .user_image_wrap .user_info .user_icon {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.userInfo_wrap .user_image_wrap .user_info .user_name {
+  color: #fff;
+  margin-top: 40rpx;
+  font-size: 40rpx;
+}
+.userInfo_wrap .user_btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40%;
+  border: 1rpx solid greenyellow;
+  color: greenyellow;
+  font-size: 38rpx;
+  padding: 30rpx;
+  border-radius: 10rpx;
+}
