@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    collect: [],
     tabs: [{
       id: 0,
       value: "商品收藏",
@@ -22,6 +23,16 @@ Page({
       value: "浏览器足迹",
       isActive: false
     }]
+  },
+
+  /**
+   * 页面启动时，获取收藏数据
+   */
+  onShow(){
+    const collect = wx.getStorageSync('collect') || [];
+    this.setData({
+      collect
+    })
   },
 
   // 根据索引确定哪个表一被激活
