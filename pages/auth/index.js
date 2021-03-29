@@ -45,15 +45,17 @@ Page({
         code
       };
       //  3 发送请求 获取用户的token
-      const {
-        token
-      } = await request({
-        url: "/users/wxlogin",
-        data: loginParams,
-        method: "post"
-      });
+      // const {
+      //   token
+      // } = await request({
+      //   url: "/users/wxlogin",
+      //   data: loginParams,
+      //   method: "post"
+      // });
       // 4 把token存入缓存中 同时跳转回上一个页面
-      wx.setStorageSync("token", token);
+      // wx.setStorageSync("token", token);
+      // monitoken
+      wx.setStorageSync('token', "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIzLCJpYXQiOjE1NjQ3MzAwNzksImV4cCI6MTAwMTU2NDczMDA3OH0.YPt-XeLnjV-_1ITaXGY2FhxmCe4NvXuRnRB8OMCfnPo appid: wxfb52f2d7b2f6123a")
       wx.navigateBack({
         delta: 1
       });
