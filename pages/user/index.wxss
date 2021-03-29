@@ -45,11 +45,13 @@ view.userContent {
   position: relative;
 }
 view.userContent view.user_main {
+  color: #666;
   position: absolute;
   width: 90%;
   left: 50%;
   transform: translateX(-50%);
   top: -40rpx;
+  padding-bottom: 100rpx;
 }
 view.userContent view.user_main .history_wrap {
   background-color: #fff;
@@ -88,4 +90,26 @@ view.userContent view.user_main .order_wrap .order_content navigator .iconfont {
 }
 view.userContent view.user_main .order_wrap .order_content navigator .order_name {
   padding: 15rpx 0 0 0;
+}
+view.userContent view.user_main .address_wrap {
+  margin-top: 30rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+view.userContent view.user_main .app_info_wrap {
+  margin-top: 30rpx;
+  background-color: #fff;
+}
+view.userContent view.user_main .app_info_wrap .app_info_item {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+view.userContent view.user_main .app_info_wrap .contact {
+  display: flex;
+  justify-content: space-between;
+}
+view.userContent view.user_main .recomment_wrap {
+  margin-top: 30rpx;
+  background-color: #fff;
+  padding: 20rpx;
 }
