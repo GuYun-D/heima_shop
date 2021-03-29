@@ -9,6 +9,15 @@
  *      4 已经存在 修改商品数据  执行购物车数量++ 重新把购物车数组 填充回缓存中
  *      5 不存在于购物车的数组中 直接给购物车数组添加一个新元素 新元素 带上 购买数量属性 num  重新把购物车数组 填充回 缓存中
  *      6 弹出提示
+ * 商品收藏
+ *      1 页面onShow的时候  加载缓存中的商品收藏的数据
+ *      2 判断当前商品是不是被收藏 
+ *            1 是 改变页面的图标
+ *            2 不是 。。
+ *      3 点击商品收藏按钮 
+ *            1 判断该商品是否存在于缓存数组中
+ *            2 已经存在 把该商品删除
+ *            3 没有存在 把商品添加到收藏数组中 存入到缓存中即可
  */
 
 import {
@@ -16,10 +25,13 @@ import {
 } from "../../request/index.js";
 
 import regeneratorRuntime from "../../lib/runtime/runtime.js";
+import { showToast } from "../../utils/asyncWx.js";
 
 Page({
   data: {
-    goodsObj: {}
+    goodsObj: {},
+    // 默认不收藏
+    isCollect: false
   },
 
   // 商品对象
@@ -47,6 +59,11 @@ Page({
 
     this.GoodsInfo = goodsObj;
 
+    // 1 获取缓存中的商品收藏的数组
+    let collect = wx.getStorageSync("collect") || [];
+    // 2 判断当前商品是否被收藏
+    let isCollect = collect.some(v => v.goods_id === this.GoodsInfo.goods_id);
+
     // console.log(goodsObj);
     /**
      * 数据太过庞大，使用的数据又没多少，小程序建议传入需要的数据，不然会造成性能缓慢
@@ -60,7 +77,8 @@ Page({
          */
         goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g, '.jpg'),
         pics: goodsObj.pics
-      }
+      },
+      isCollect
     })
   },
 
@@ -104,5 +122,53 @@ Page({
       mask: true
     })
 
+  },
+
+  // 
+  onShow: function () {
+    let pages = getCurrentPages();
+    let currentPage = pages[pages.length - 1];
+    let options = currentPage.options;
+    const {
+      goods_id
+    } = options;
+    this.getGoodsDetail(goods_id);
+  },
+
+  // 点击收藏
+  handleClick() {
+    // 设置flag
+    let isCollect = false
+    // 获取缓存中的商品收藏数组
+    let collect = wx.getStorageSync('collect') || []
+
+    // 判断是否已经收藏
+    let index = collect.findIndex(v => v.goods_id === this.GoodsInfo.goods_id)
+
+    // 当index ！= -1时，表示已经收藏
+    if (index != -1) {
+      collect.splice(index, 1)
+      isCollect = false
+      wx.showToast({
+        title: '取消成功',
+        icon: "success",
+        mask: true
+      })
+    }else{
+      collect.push(this.GoodsInfo)
+      isCollect = true
+      wx.showToast({
+        title: '收藏成功',
+        icon: "success",
+        mask: true
+      })
+    }
+    // 存入缓存
+    wx.setStorageSync('collect', collect)
+
+    // 修改iscollect  的属性
+    this.setData({
+      isCollect
+    })
   }
 })
