@@ -1,3 +1,6 @@
+page {
+  background-color: #e7dede;
+}
 .userInfo_wrap {
   height: 55vh;
   position: relative;
@@ -37,4 +40,52 @@
   font-size: 38rpx;
   padding: 30rpx;
   border-radius: 10rpx;
+}
+view.userContent {
+  position: relative;
+}
+view.userContent view.user_main {
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -40rpx;
+}
+view.userContent view.user_main .history_wrap {
+  background-color: #fff;
+  display: flex;
+}
+view.userContent view.user_main .history_wrap navigator {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+}
+view.userContent view.user_main .history_wrap navigator .his_num {
+  color: var(--themeColor);
+}
+view.userContent view.user_main .history_wrap navigator .his_name {
+  padding-top: 0rpx;
+}
+view.userContent view.user_main .order_wrap {
+  background-color: #fff;
+  margin-top: 30rpx;
+}
+view.userContent view.user_main .order_wrap .order_title {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+view.userContent view.user_main .order_wrap .order_content {
+  display: flex;
+}
+view.userContent view.user_main .order_wrap .order_content navigator {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+}
+view.userContent view.user_main .order_wrap .order_content navigator .iconfont {
+  color: var(--themeColor);
+  font-size: 40rpx;
+}
+view.userContent view.user_main .order_wrap .order_content navigator .order_name {
+  padding: 15rpx 0 0 0;
 }
