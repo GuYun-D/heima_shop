@@ -15,11 +15,15 @@
       </textarea>
       <view class="fd_tools">
         <button>+</button>
+        <view class="up_img_item">
+          <UpImg></UpImg>
+        </view>
+        
       </view>
     </view>
 
     <view class="form_btn_wrap">
-      <button type="warn" class="success_no_circle" size="23" color="#fff">提交</button>
+      <button type="success_no_circle" size="23" color="#fff">提交</button>
     </view>
   </view>
 </Tabs>

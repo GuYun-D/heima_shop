@@ -1,0 +1,12 @@
+.up_img_wrap {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+}
+.up_img_wrap image {
+  width: 100%;
+}
+.up_img_wrap icon {
+  position: absolute;
+  width: 100rpx;
+}

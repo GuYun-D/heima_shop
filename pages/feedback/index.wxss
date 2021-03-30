@@ -28,6 +28,7 @@ page {
   flex-wrap: wrap;
 }
 .fb_main .fb_content .fd_tools button:not([size='mini']) {
+  margin: 0;
   width: 90rpx;
   height: 90rpx;
   font-size: 40rpx;
@@ -39,6 +40,9 @@ page {
   color: #b2b6b6;
   margin-bottom: 30rpx;
   background-color: #f3eded;
+}
+.fb_main .fb_content .fd_tools .up_img_item {
+  margin-left: 20rpx;
 }
 .fb_main .form_btn_wrap {
   margin-top: 60rpx;
