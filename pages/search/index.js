@@ -67,6 +67,7 @@ Page({
 
   // 点击取消按钮
   handleCancel(){
+    clearTimeout(this.timer)
     this.setData({
       inpValue: "",
       isFocus: false,
