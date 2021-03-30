@@ -3,8 +3,12 @@
  * 合法性判断
  * 校验通过，把输入框的值发送给后台
  * 接受返回的值
-
  */
+
+ /**
+  * 防抖
+  *     定时器，全局的
+  */
 
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import {
@@ -18,6 +22,9 @@ Page({
     goods: []
   },
 
+  // 定时器id
+  timer: -1,
+
   // 值改变事件
   handleInput(e) {
     // console.log(e);
@@ -30,7 +37,11 @@ Page({
       return
     }
     // 准备发送请求
-    this.qsearch(value)
+    // 清除定时器
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.qsearch(value)
+    }, 1000);
   },
 
   // 发送数据搜索
