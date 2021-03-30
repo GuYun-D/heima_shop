@@ -1,2 +1,2 @@
-<!--pages/feedback/index.wxml-->
-<text>pages/feedback/index.wxml</text>
+<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
+</Tabs>
