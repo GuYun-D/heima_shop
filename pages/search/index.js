@@ -19,7 +19,11 @@ import {
 Page({
 
   data: {
-    goods: []
+    goods: [],
+    // 控制按钮是否隐藏
+    isFocus: false,
+    // 输入框的值
+    inpValue: ""
   },
 
   // 定时器id
@@ -34,8 +38,16 @@ Page({
     } = e.detail;
     // 校验合法性
     if (!value.trim()) {
+      this.setData({
+        goods: [],
+        isFocus: false
+      })
       return
     }
+    // 输入框有值时显示按钮
+    this.setData({
+      isFocus: true
+    })
     // 准备发送请求
     // 清除定时器
     clearTimeout(this.timer);
@@ -50,6 +62,15 @@ Page({
     console.log(res);
     this.setData({
       goods: res
+    })
+  },
+
+  // 点击取消按钮
+  handleCancel(){
+    this.setData({
+      inpValue: "",
+      isFocus: false,
+      goods: []
     })
   }
 })
