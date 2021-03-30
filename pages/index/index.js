@@ -12,7 +12,13 @@ Page({
     catesList: [],
 
     // 楼层数据
-    floorList: []
+    floorList: [],
+
+    // 跳转url
+    urlBox: [],
+    
+    // 截取后的
+    finlArr: []
   },
 
   // 页面开始加载时触发
@@ -72,9 +78,44 @@ Page({
         url: "/home/floordata"
       })
       .then(result => {
+        // console.log(result);
+        const newArr = result;
+        newArr.forEach(v => {
+          // console.log(v);
+          v.product_list.forEach(i => {
+            // console.log(i.navigator_url);
+            const urlBox = []
+            urlBox.push(i.navigator_url)
+            this.setData({
+              urlBox: [...this.data.urlBox, ...urlBox]
+            })
+          });
+        });
         this.setData({
           floorList: result
         })
+        this.handleUrlBox()
+
       })
+
+
+  },
+
+  // 处理urlBox
+  handleUrlBox() {
+    const {
+      urlBox
+    } = this.data
+
+    const finlArr = []
+    urlBox.forEach(v => {
+      const query = v.substring(24, 26)
+      finlArr.push(query)
+    });
+    console.log(urlBox);
+
+    this.setData({
+      finlArr: [...this.data.finlArr, ...finlArr]
+    })
   }
 })

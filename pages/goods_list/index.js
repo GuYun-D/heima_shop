@@ -72,7 +72,8 @@ Page({
   onLoad: function (options) {
     // 获取其他页面传递过来的参数， 就是cid
     // console.log(options);
-    this.QueryParams.cid = options.cid;
+    this.QueryParams.cid = options.cid || "";
+    this.QueryParams.query = options.query || "";
     // console.log(this.QueryParams);
     this.getGoodsList()
 
