@@ -1,9 +1,7 @@
 <view class="search_row">
-  <input type="text" name="" id="" placeholder="请输入搜索内容" />
+  <input type="text" name="" id="" placeholder="请输入搜索内容" bindinput="handleInput" />
   <button>取消</button>
 </view>
 <view class="search_content">
-  <view class="search_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem</view>
-  <view class="search_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem</view>
-  <view class="search_item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem</view>
+  <navigator class="search_item" wx:for="{{goods}}" wx:key="goods_id">{{item.goods_name}}</navigator>
 </view>

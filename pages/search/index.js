@@ -1,66 +1,44 @@
-// pages/search/index.js
+/**
+ * 输入框绑定，值改变事件，input事件、
+ * 合法性判断
+ * 校验通过，把输入框的值发送给后台
+ * 接受返回的值
+
+ */
+
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import {
+  request
+} from "../../request/index.js";
+
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    goods: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  // 值改变事件
+  handleInput(e) {
+    // console.log(e);
+    // 获取值
+    const {
+      value
+    } = e.detail;
+    // 校验合法性
+    if (!value.trim()) {
+      return
+    }
+    // 准备发送请求
+    this.qsearch(value)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 发送数据搜索
+  async qsearch(query){
+    const res = await request({url: "/goods/qsearch", data: {query}});
+    console.log(res);
+    this.setData({
+      goods: res
+    })
   }
 })
