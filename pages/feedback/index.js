@@ -7,11 +7,11 @@ Page({
   data: {
     tabs: [{
       id: 0,
-      value: "综合",
+      value: "体验问题",
       isActive: true
     }, {
       id: 1,
-      value: "销量",
+      value: "商品/商家投诉",
       isActive: false
     }]
   },
