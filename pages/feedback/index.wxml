@@ -17,6 +17,8 @@
         <button>+</button>
         <view class="up_img_item">
           <UpImg></UpImg>
+          <UpImg></UpImg>
+          <UpImg></UpImg>
         </view>
         
       </view>

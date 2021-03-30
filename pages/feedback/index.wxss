@@ -42,7 +42,7 @@ page {
   background-color: #f3eded;
 }
 .fb_main .fb_content .fd_tools .up_img_item {
-  margin-left: 20rpx;
+  display: flex;
 }
 .fb_main .form_btn_wrap {
   margin-top: 60rpx;

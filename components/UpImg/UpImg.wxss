@@ -2,11 +2,17 @@
   width: 100rpx;
   height: 100rpx;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 20rpx;
 }
 .up_img_wrap image {
   width: 100%;
 }
 .up_img_wrap icon {
   position: absolute;
+  top: -22rpx;
+  right: -80rpx;
   width: 100rpx;
 }
