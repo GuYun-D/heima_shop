@@ -1,4 +1,10 @@
-// pages/feedback/index.js
+/**
+ * 点击加号按钮：
+ *      调用小程序内置的选择图片api
+ *      获取到图片路径 数组
+ *      把图片存到data中
+ *      页面根据图片数组循环获取显示
+ */
 Page({
 
   /**
@@ -13,7 +19,10 @@ Page({
       id: 1,
       value: "商品/商家投诉",
       isActive: false
-    }]
+    }],
+
+    // 被选中的图片路径
+    chooseImage: []
   },
 
   // 标题点击事件，从子组件传递过来
@@ -34,4 +43,22 @@ Page({
     })
   },
 
+  // 点击加，选择图片
+  handleCkooseImage(){
+    wx.chooseImage({
+      count: 9,
+      // 原图还是压缩过的
+      sizeType: ["compressed", "original"],
+      // 图片来源
+      sourceType: ["album", "camera"],
+      success: (result) => {
+        this.setData({
+          /**
+           * 为了能够多次上传图片，需要将数组进行拼接
+           */
+          chooseImage: [...this.data.chooseImage, ...result.tempFilePaths]
+        })
+      }
+    })
+  }
 })
