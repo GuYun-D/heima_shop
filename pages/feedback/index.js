@@ -60,5 +60,19 @@ Page({
         })
       }
     })
+  },
+
+  // 删除图片
+  handleRemoveImg(e){
+    // 获取被点击组件的索引
+    const {index} = e.currentTarget.dataset;
+    console.log(index);
+    // 获取data中的图片数组
+    let {chooseImage} = this.data;
+    // 删除元素
+    chooseImage.splice(index, 1)
+    this.setData({
+      chooseImage
+    })
   }
 })

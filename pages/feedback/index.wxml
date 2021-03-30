@@ -15,7 +15,7 @@
       </textarea>
       <view class="fd_tools">
         <button bindtap="handleCkooseImage">+</button>
-        <view class="up_img_item" wx:for="{{chooseImage}}" wx:key="*this">
+        <view class="up_img_item" wx:for="{{chooseImage}}" wx:key="*this" data-index="{{index}}" bindtap="handleRemoveImg">
           <UpImg src="{{item}}"></UpImg>
         </view>
         
